@@ -5,6 +5,7 @@ LABEL maintainer="Joe Saia <joe5saia@gmail.com>"
 WORKDIR /app
 COPY requirements.txt /app/
 RUN pip --disable-pip-version-check --no-cache-dir install -r requirements.txt
+RUN mkdir /app/data && chmod 777 /app/data
 
 COPY . /app
 
