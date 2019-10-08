@@ -65,6 +65,7 @@ def gss():
     ################################################################################
     # Download GSS data on forward rates and extract them to DataFrame. These are Nominal Bonds
     ################################################################################
+    print('Reading in GSS data')
     url = 'https://www.federalreserve.gov/econresdata/researchdata/feds200628.zip'
     urllib.request.urlretrieve(url, 'data/feds200628.zip')
     with zipfile.ZipFile("data/feds200628.zip", 'r') as zip_ref:
@@ -84,6 +85,7 @@ def gsw():
     ################################################################################
     # Download GSW data on forward rates and extract them to DataFrame. These are TIPS
     ################################################################################
+    print('Reading in GSW data')
     url = 'https://www.federalreserve.gov/econresdata/researchdata/feds200805.zip'
     urllib.request.urlretrieve(url, 'data/feds200805.zip')
     with zipfile.ZipFile("data/feds200805.zip", 'r') as zip_ref:
@@ -105,6 +107,7 @@ def exrates(fred):
     # Download exchange rate data from FRED
     # inputs: fred is a Fred object from the fredapi module
     ################################################################################
+    print('Reading in Exchange Rate Date')
     xrates = ['DTWEXM', 'DEXUSEU', 'DEXJPUS',
               'DEXUSUK', 'DEXCAUS', 'DEXMXUS', 'DEXUSAL']
     data = pd.DataFrame({s: fred.get_series(s) for s in xrates})
@@ -118,6 +121,7 @@ def fredirates(fred):
     # Download interest rate data from FRED
     # inputs: fred is a Fred object from the fredapi module
     ################################################################################
+    print('Reading in interest rate data')
     irates = ['AAA', 'BAA', 'FEDFUNDS',
               'DFEDTARU', 'DFEDTARL', 'DFEDTAR', 'DCPN3M', 'DCPF3M']
     data = pd.DataFrame({s: fred.get_series(s) for s in irates})
@@ -157,6 +161,7 @@ def main():
     levels = list(set(df.columns).difference(rates))
 
     # Calculate growth rates for each group and combine
+    print('Calculating Growth Rates')
     dflevels = df[levels].pct_change(periods=1, fill_method=None)
     dfrates = df[rates].pct_change(periods=1, fill_method=None)
     dfchange = pd.concat([dflevels, dfrates], join='outer', axis=1)
