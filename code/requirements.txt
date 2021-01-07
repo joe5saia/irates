@@ -5,7 +5,7 @@ cycler==0.10.0
 et==0.0.2
 fredapi==0.4.2
 kiwisolver==1.0.1
-lxml==4.4.1
+lxml==4.6.2
 matplotlib==3.0.2
 numpy==1.15.4
 pandas==0.23.4
